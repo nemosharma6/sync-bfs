@@ -4,8 +4,8 @@ object Master {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        Log.initialise("output")
-        ParseInput.readFile("/Users/nimish/Movies/sync-bfs/src/input.dat")
+        Log.initialise(args[1])
+        ParseInput.readFile(args[0])
         val nodes = ArrayList<Node>()
 
         val linkList = ArrayList<Link>()
