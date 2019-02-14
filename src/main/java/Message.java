@@ -1,3 +1,6 @@
+/*
+store the message and the nodes communicating through the message
+ */
 public class Message {
 
     private MessageType type;

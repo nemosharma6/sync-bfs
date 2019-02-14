@@ -3,6 +3,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*
+The idea is to keep track of who to receive feedback from and who to send feedback to. If the node receives feedback
+from all the children then it can send a feedback to its parent. Thus the tree is created from the leaf to the root.
+ */
 public class Node implements Runnable {
 
     private Thread thread;
@@ -109,6 +113,11 @@ public class Node implements Runnable {
                     terminate = true;
             }
         } else {
+            /*
+            if child process receives a message then it can decide on its parent from among its options. After deciding
+            on its parent it can send messages on edges that are not connected to its parent in the hope that some of
+            them would become its child. This ends the initial phase.
+             */
             if (initiate) {
                 boolean temp = anyMsg();
                 if (temp) {
@@ -138,7 +147,10 @@ public class Node implements Runnable {
                     initiate = false;
                 }
             } else {
-
+                /*
+                Check messages from neighbours. Act according to the message received. Finally when there are no
+                waiting messages then send an ack to the parent.
+                 */
                 for (Link e : linkMap.values()) {
                     int sender = e.linkedTo(id);
                     Message m = e.readMsg(id);
@@ -158,7 +170,6 @@ public class Node implements Runnable {
 
                 }
 
-                // send nacks next
                 ArrayList<Integer> toDelete = new ArrayList<Integer>();
                 for (Integer sender : respondToThem.keySet()) {
                     Message m = respondToThem.get(sender);
