@@ -10,5 +10,5 @@ remaining rows indicate the adjacency matrix
 
 ### compile and run
 
-kotlinc *.kt -include-runtime -d sync.jar 
+kotlinc *.kt -include-runtime -d sync.jar   
 kotlin -cp sync.jar Master input.dat output
