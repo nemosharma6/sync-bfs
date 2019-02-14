@@ -1,5 +1,5 @@
 # sync-bfs
-implement sync bfs algo. 
+implement sync bfs algo    
 message complexity : O(|E|)   
 time complexity : O(diam)
 
